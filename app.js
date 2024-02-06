@@ -5,15 +5,7 @@ const middleware = require('./middleware');
 const path = require('path');
 const bodyParser = require("body-parser");
 
-const mongoose = require('mongoose');   // mongoose is imported
-
-mongoose.connect('mongodb+srv://sarveshpandey:AR2DEqt5xtRdD8tQ@tweater.qobp4xk.mongodb.net/?retryWrites=true&w=majority').
-    then(() => {
-        console.log('Connection is strong');
-    })
-    .catch((err) => {
-        console.log("Error is found" +err);
-    })
+const mongoose = require('./database');   // mongoose is imported
 
 /// database is connected using mongoose 
     
