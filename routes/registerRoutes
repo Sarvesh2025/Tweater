@@ -3,6 +3,8 @@ const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
 const User = require('../schemas/UserSchema');
+const bcrypt = require("bcrypt");
+
 
 
 app.set("view engine", "pug");
@@ -26,7 +28,7 @@ router.post("/", async(req, res, next) => {
         // res.status(200).render("register",payload);
         var user = await User.findOne({
             $or: [
-                { useName: userName },            // code to check if email id or username alrready exist 
+                { userName: userName },            // code to check if email id or username alrready exist 
                 { email: email }
             ]
         })
@@ -37,9 +39,12 @@ router.post("/", async(req, res, next) => {
         
         if (user == null) {
             var data = req.body;
+
+            data.password = await bcrypt.hash(password, 10);
             User.create(data)    
                 .then((user) => {
-                    console.log(user);
+                    req.session.user = user;
+                    return res.redirect("/");
                 } 
             )
         }

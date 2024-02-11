@@ -3,9 +3,11 @@ const app = express();
 const port = 3003;
 const middleware = require('./middleware');
 const path = require('path');
-const bodyParser = require("body-parser");
-
-const mongoose = require('./database');   // mongoose is imported
+const bodyParser = require("body-parser")
+const mongoose = require('./database');
+// mongoose is imported
+                                  
+const session = require("express-session");
 
 /// database is connected using mongoose 
     
@@ -25,7 +27,11 @@ app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));// to make the public folder static
 
-
+app.use(session({
+    secret: "bbq chips",
+    resave: true,
+    saveUninitialized: false
+}));
 
 
 // Routes
@@ -41,7 +47,8 @@ app.use("/register", registerRoute);
 
 app.get("/", middleware.requireLogin,(req, res, next) => {
     var payload = {
-        pageTitle: "Home"
+        pageTitle: "Home",
+        userLoggedIn:req.session.user
     }                            // payload is used to transfer data to rendering page .
     res.status(200).render("home",payload);
 });
