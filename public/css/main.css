@@ -1,8 +1,13 @@
 :root {
     --blue: hsl(203, 88%, 53%);
+    --bluelight: #9BD1F9;
     --buttonHoverBg: #d4edff;
     --lightGrey: rgb(230, 236, 240);
     --spacing: 15px;
+    
+}
+* {
+    outline:none !important;
 }
 h1 {
     font-size: 19px;
@@ -48,7 +53,6 @@ nav a:hover {
 }
 
 .mainSectionContainer {
- background-color:#1fa2f1; 
     padding: 0;
     border-left: 1px solid var(--lightGrey);
     border-right: 1px solid var(--lightGrey);
@@ -67,4 +71,46 @@ nav a:hover {
 
 .titleContainer h1 {
     flex: 1;
+}
+
+.postFormContainer {
+    display: flex;
+    padding: var(--spacing);
+    border-bottom: 10px solid rgb(230, 236, 240);
+    flex-shrink: 0;
+    /* flex-direction: column; */
+}
+
+.userImageContainer{
+    width:50px;
+    height:50px;
+}
+.userImageContainer img {
+    width: 100%;
+    border-radius:50%;
+    background-color: white;
+} 
+
+.textareaContainer{
+    flex:1;
+    padding-left:var(--spacing);
+}
+
+.textareaContainer textarea {
+    width:100%;
+    border:none;
+    resize:none;
+    font-size:19px;
+}
+
+#submitPostButton{
+    background-color: var(--blue);
+    color:white;
+    border:none;
+    border-radius:40px;
+    padding:7px 15px;
+}
+
+#submitPostButton:disabled{
+    background-color: var(--bluelight);
 }

@@ -6,7 +6,7 @@ const UserSchema = new Schema({
     userName: { type: String, required: true, trim: true, unique: true },
     email: { type: String, required: true, trim: true, unique: true },
     password: { type: String, required: true },
-    prifilePic: { type: String, default: "/images/profile.png" },
+    prifilePic: { type: String, default:"/images/profile.jpg"},
 }, {timestamps: true});
 
 var User = mongoose.model('User', UserSchema);
